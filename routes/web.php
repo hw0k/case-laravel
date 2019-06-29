@@ -11,5 +11,11 @@
 |
 */
 
-Route::get('/api/test', 'TestController');
+Route::group(['prefix' => 'api'], function (){
+    Route::group(['prefix' => 'user'], function (){
+        Route::get('idCheck/{id}', 'UserController@idCheck');
+    });
+    Route::get('test', 'TestController');
+});
+
 Route::get('/{any}', 'SpaController')->where('any', '.*');

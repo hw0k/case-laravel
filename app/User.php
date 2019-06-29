@@ -2,38 +2,138 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
-class User extends Authenticatable
+class User extends Model
 {
-    use Notifiable;
+    private $account;
+    private $password;
+    private $age;
+    private $email;
+    private $phone;
+    private $gender;
+    private $point;
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
+     * @return mixed
      */
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
+    public function getAccount()
+    {
+        return $this->account;
+    }
 
     /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
+     * @param mixed $account
      */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    public function setAccount($account): void
+    {
+        $this->account = $account;
+    }
 
     /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
+     * @return mixed
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * @param mixed $password
+     */
+    public function setPassword($password): void
+    {
+        $this->password = $password;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAge()
+    {
+        return $this->age;
+    }
+
+    /**
+     * @param mixed $age
+     */
+    public function setAge($age): void
+    {
+        $this->age = $age;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param mixed $email
+     */
+    public function setEmail($email): void
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * @param mixed $phone
+     */
+    public function setPhone($phone): void
+    {
+        $this->phone = $phone;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGender()
+    {
+        return $this->gender;
+    }
+
+    /**
+     * @param mixed $gender
+     */
+    public function setGender($gender): void
+    {
+        $this->gender = $gender;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPoint()
+    {
+        return $this->point;
+    }
+
+    /**
+     * @param mixed $point
+     */
+    public function setPoint($point): void
+    {
+        $this->point = $point;
+    }
+
+    public function idCheck(){
+        $id = DB::table('USER_TB')->where('u_account', '=', $this->account)->value('u_idx');
+
+        if(isset($id)){
+            return 1;
+        } else {
+            return 0;
+        }
+    }
 }
