@@ -9,22 +9,15 @@
 namespace App\Http\Controllers;
 
 
+use App\Interest;
 use App\User;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 
 class UserController
 {
-    private $request = null;
-
-    public function __construct(Request $request){
-        $this->request = $request;
-    }
-
-    public function idCheck($id){
-        $userModel = new User();
-        $userModel->setAccount($id);
-
-        return response()->json(['status' => $userModel->idCheck()],Response::HTTP_OK);
+    public function idCheck(Request $request, $account){
+        $user = User::where('u_account', '=', $account)->firstOrFail();
+        return response()->json(['status' => $user],Response::HTTP_OK);
     }
 }
