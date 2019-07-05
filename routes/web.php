@@ -15,6 +15,7 @@ Route::group(['prefix' => 'api'], function (){
     Route::group(['prefix' => 'user'], function (){
         Route::get('idCheck/{id}', 'UserController@idCheck');
         Route::post('register', 'UserController@register');
+        Route::post('findId', 'UserController@findId');
     });
     Route::get('test', 'TestController');
 });

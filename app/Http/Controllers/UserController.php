@@ -47,4 +47,15 @@ class UserController
 
         return response()->json(['idx' => $user->u_idx], Response::HTTP_OK);
     }
+
+    public function findId(Request $request){
+        $input = $request->only(['name', 'email']);
+
+        $user = User::where('u_name','=',$input['name'])
+            ->where('u_email','=',$input['email'])
+            ->firstOrFail();
+
+
+        return response()->json(['account' => $user->u_account], Response::HTTP_OK);
+    }
 }
