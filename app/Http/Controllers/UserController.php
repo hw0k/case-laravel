@@ -67,4 +67,22 @@ class UserController
 
         return response()->json(['password' => $user->u_password], Response::HTTP_OK);
     }
+
+    public function setProfile(Request $request, $id){
+        if($request->hasFile('profile')){
+            $user = User::findOrFail($id);
+            $profile = $request->file('profile');
+
+            $images = $profile->getClientOriginalName();
+            $profile->storeAs('public/images',$images);
+
+            $user->u_profile = $images;
+
+            $user->save();
+
+            return response()->json(['user' => $user], Response::HTTP_OK);
+        } else {
+            return response()->json(['status' => 'No Profile File'], Response::HTTP_BAD_REQUEST);
+        }
+    }
 }

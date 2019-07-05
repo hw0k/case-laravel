@@ -19,6 +19,7 @@ class User extends Model
         'u_age',
         'u_email',
         'u_phone',
-        'u_gender'
+        'u_gender',
+        'u_profile'
     ];
 }

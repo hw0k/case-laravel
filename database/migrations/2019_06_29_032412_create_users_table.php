@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('u_email');
             $table->string('u_phone')->nullable();
             $table->string('u_gender')->nullable();
+            $table->string('u_profile')->nullable();
             $table->integer('u_point')->default(0);
             $table->engine = 'InnoDB';
         });
