@@ -13,11 +13,12 @@
 
 Route::group(['prefix' => 'api'], function (){
     Route::group(['prefix' => 'user'], function (){
-        Route::get('idCheck/{account}', 'UserController@idCheck');
-        Route::post('register', 'UserController@register');
-        Route::post('findId', 'UserController@findId');
-        Route::post('findPw', 'UserController@findPw');
-        Route::post('setProfile/{id}', 'UserController@setProfile');
+        Route::get('/idCheck/{account}', 'UserController@idCheck');
+        Route::post('/register', 'UserController@register');
+        Route::post('/findId', 'UserController@findId');
+        Route::post('/findPw', 'UserController@findPw');
+        Route::post('/setProfile/{id}', 'UserController@setProfile');
+        Route::get('/{id}', 'UserController@show');
     });
     Route::get('test', 'TestController');
 });

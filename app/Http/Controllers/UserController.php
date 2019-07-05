@@ -73,16 +73,22 @@ class UserController
             $user = User::findOrFail($id);
             $profile = $request->file('profile');
 
-            $images = $profile->getClientOriginalName();
-            $profile->storeAs('public/images',$images);
+            $extension = $profile->getClientOriginalExtension();
+            $filename = time().'.'.$extension;
+            $profile->move('uploads /profiles/', $filename);
 
-            $user->u_profile = $images;
-
+            $user->u_profile = $filename;
             $user->save();
 
-            return response()->json(['user' => $user], Response::HTTP_OK);
+            return response()->json($user, Response::HTTP_OK);
         } else {
             return response()->json(['status' => 'No Profile File'], Response::HTTP_BAD_REQUEST);
         }
+    }
+
+    public function show(Request $request, $id){
+        $user = User::findOrFail($id);
+
+        return response()->json($user, Response::HTTP_OK);
     }
 }
