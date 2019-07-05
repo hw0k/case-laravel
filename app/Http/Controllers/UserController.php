@@ -55,7 +55,16 @@ class UserController
             ->where('u_email','=',$input['email'])
             ->firstOrFail();
 
-
         return response()->json(['account' => $user->u_account], Response::HTTP_OK);
+    }
+
+    public function findPw(Request $request){
+        $input = $request->only(['account', 'email']);
+
+        $user = User::where('u_account','=',$input['account'])
+            ->where('u_email','=',$input['email'])
+            ->firstOrFail();
+
+        return response()->json(['password' => $user->u_password], Response::HTTP_OK);
     }
 }
