@@ -20,6 +20,10 @@ Route::group(['prefix' => 'api'], function (){
         Route::post('/setProfile/{id}', 'UserController@setProfile');
         Route::get('/{id}', 'UserController@show');
     });
+    Route::group(['prefix' => 'case'], function (){
+       Route::post('/addQuiz', 'CaseController@createQuiz');
+       Route::post('/addColumn', 'CaseController@addColumn');
+    });
     Route::get('test', 'TestController');
 });
 

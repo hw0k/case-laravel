@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 
 use App\Example;
+use App\ExampleColumn;
 use App\Media;
 use App\Quiz;
 use App\Survey;
@@ -35,22 +36,41 @@ class CaseController
         } else {
             $quizDetail = new Text();
             if($request->hasFile('media')){
-                $media = new Media();
-                $file = $request->file('media');
-
-                $extension = $file->getClientOriginalExtension();
-                $filename = time().'.'.$extension;
-                $file->move('uploads/media/', $filename);
-
-                $media->me_path = '/uploads/media/'.$filename;
-
-                $media->save();
-                $quizDetail->me_idx = $media->me_idx;
+                $quizDetail->me_idx = $this->addMedia($request->file('media'));
             }
         }
 
         $quizDetail->save();
 
         return response()->json(['idx' => $quiz->qu_idx], Response::HTTP_OK);
+    }
+
+    public function addColumn(Request $request){
+        $exColumn = new ExampleColumn();
+
+        $exColumn->qu_idx = $request->input('quiz');
+        $exColumn->ex_co_number = $request->input('number');
+        $exColumn->ex_co_ex = $request->input('explain');
+
+        if($request->hasFile('media')){
+            $exColumn->me_idx = $this->addMedia($request->file('media'));
+        }
+
+        $exColumn->save();
+
+        return response()->json(['idx' => $exColumn->ex_co_idx], Response::HTTP_OK);
+    }
+
+    public function addMedia($file){
+        $media = new Media();
+
+        $extension = $file->getClientOriginalExtension();
+        $filename = time().'.'.$extension;
+        $file->move('uploads/media/', $filename);
+        $media->me_path = '/uploads/media/'.$filename;
+
+        $media->save();
+
+        return $media->me_idx;
     }
 }
