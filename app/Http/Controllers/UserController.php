@@ -75,7 +75,7 @@ class UserController
 
             $extension = $profile->getClientOriginalExtension();
             $filename = time().'.'.$extension;
-            $profile->move('uploads /profiles/', $filename);
+            $profile->move('uploads/profiles/', $filename);
 
             $user->u_profile = $filename;
             $user->save();

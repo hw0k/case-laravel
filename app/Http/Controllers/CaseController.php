@@ -13,7 +13,9 @@ use App\Example;
 use App\ExampleColumn;
 use App\Media;
 use App\Quiz;
+use App\QuizList;
 use App\Survey;
+use App\Tag;
 use App\Text;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -61,6 +63,38 @@ class CaseController
         return response()->json(['idx' => $exColumn->ex_co_idx], Response::HTTP_OK);
     }
 
+    public function createCase(Request $request){
+        $case = new Survey();
+
+        $case->ca_title = $request->input('title');
+        $case->u_idx = $request->input('user');
+
+        $case->save();
+
+        $quizs = $request->input('quiz');
+        $counter = 1;
+        foreach ($quizs as $quiz){
+            $quizList = new QuizList();
+
+            $quizList->ca_idx = $case->ca_idx;
+            $quizList->qu_li_sequence = $counter++;
+            $quizList->qu_idx = $quiz;
+
+            $quizList->save();
+        }
+
+        $tags = $request->input('tags');
+        foreach ($tags as $tag){
+            $caseTag = new Tag();
+
+            $caseTag->ca_idx = $case->ca_idx;
+            $caseTag->i_idx = $tag;
+
+            $caseTag->save();
+        }
+        return response()->json(['idx' => $case->ca_idx], Response::HTTP_OK);
+    }
+
     public function addMedia($file){
         $media = new Media();
 
@@ -73,4 +107,6 @@ class CaseController
 
         return $media->me_idx;
     }
+
+
 }

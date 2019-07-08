@@ -11,15 +11,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Example extends Model
+class QuizList extends Model
 {
-    protected $table = 'CASE_EXAMPLE_TB';
-    protected $primaryKey = 'qu_idx';
+    protected $table = 'QUIZ_LIST_TB';
+    protected $primaryKey = ['ca_idx','qu_li_sequence'];
     public $timestamps = false;
     public $incrementing = false;
 
     protected $fillable = [
-        'qu_idx',
-        'ex_type'
+        'ca_idx',
+        'qu_li_sequence',
+        'qu_idx'
     ];
 }
