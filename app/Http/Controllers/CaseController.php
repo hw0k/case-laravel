@@ -32,7 +32,7 @@ class CaseController
 
         $quiz->save();
 
-        if($quiz->qu_table == 'EXAMPLE'){
+        if($quiz->qu_table == 'example'){
             $quizDetail = new Example();
             $quizDetail->ex_type = $request->input('type');
         } else {
@@ -93,7 +93,18 @@ class CaseController
 
             $caseTag->save();
         }
+
         return response()->json(['idx' => $case->ca_idx], Response::HTTP_OK);
+    }
+
+    public function list(Request $request){
+        $list = Survey::all();
+
+        return response()->json($list, Response::HTTP_OK);
+    }
+
+    public function show(Request $request, $id){
+
     }
 
     public function addMedia($file){
@@ -108,7 +119,4 @@ class CaseController
 
         return $media->me_idx;
     }
-
-
-
 }
