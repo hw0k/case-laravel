@@ -11,10 +11,11 @@
 |
 */
 
-Route::group(['prefix' => 'api'], function (){
+Route::group(['prefix' => 'api', 'middleware' => 'cors'], function (){
     Route::group(['prefix' => 'user'], function (){
         Route::get('/idCheck/{account}', 'UserController@idCheck');
         Route::post('/register', 'UserController@register');
+        Route::post('/login', 'UserController@login');
         Route::post('/findId', 'UserController@findId');
         Route::post('/findPw', 'UserController@findPw');
         Route::post('/setProfile/{id}', 'UserController@setProfile');
@@ -23,6 +24,7 @@ Route::group(['prefix' => 'api'], function (){
     Route::group(['prefix' => 'case'], function (){
        Route::post('/addQuiz', 'CaseController@createQuiz');
        Route::post('/addColumn', 'CaseController@addColumn');
+       Route::get('/', 'CaseController@list');
     });
     Route::get('test', 'TestController');
 });
