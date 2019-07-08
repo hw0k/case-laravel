@@ -16,9 +16,7 @@ class CreateMediaTable extends Migration
         Schema::create('MEDIA_TB', function (Blueprint $table) {
             $table->bigIncrements('me_idx');
             $table->string('me_path');
-            $table->bigInteger('me_t_idx')->unsigned();
-
-            $table->foreign('me_t_idx')->references('me_t_idx')->on('MEDIA_TYPE_RF');
+            $table->string('me_type');
             $table->engine = 'InnoDB';
         });
     }
