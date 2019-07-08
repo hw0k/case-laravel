@@ -19,6 +19,7 @@ class Survey extends Model
 
     protected $fillable = [
         'ca_title',
-        'u_idx'
+        'u_idx',
+        'ca_point'
     ];
 }

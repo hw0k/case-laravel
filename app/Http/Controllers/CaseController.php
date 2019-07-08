@@ -68,6 +68,7 @@ class CaseController
 
         $case->ca_title = $request->input('title');
         $case->u_idx = $request->input('user');
+        $case->ca_point = $request->input('point');
 
         $case->save();
 
@@ -107,6 +108,7 @@ class CaseController
 
         return $media->me_idx;
     }
+
 
 
 }
