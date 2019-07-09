@@ -113,6 +113,7 @@ class CaseController
             $temp['ca_point'] = $survey->ca_point;
             $temp['ca_participant'] = $survey->ca_participant;
             $temp['ca_created'] = date(DATE_ATOM, strtotime($survey->ca_created));
+            $temp['quizs'] = Survey::find($survey->ca_idx)->quizs->count();
             $temp['u_name'] = $survey->user->u_name;
             $temp['tags'] = Survey::find($survey->ca_idx)->tags;
             array_push($response, $temp);

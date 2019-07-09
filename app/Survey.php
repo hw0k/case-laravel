@@ -38,4 +38,8 @@ class Survey extends Model
     public function user(){
         return $this->belongsTo('App\User', 'u_idx','u_idx');
     }
+
+    public function quizs(){
+        return $this->hasMany('App\QuizList', 'ca_idx', 'ca_idx');
+    }
 }
