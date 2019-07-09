@@ -50,7 +50,7 @@ class UserController
 
     public function login(Request $request){
         $user = User::where('u_account', '=', $request->input('account'))
-            ->where('u_password', '=', $request->input('email'))
+            ->where('u_password', '=', $request->input('password'))
             ->firstOrFail();
 
         return response()->json($user, Response::HTTP_OK);
