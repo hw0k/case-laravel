@@ -20,6 +20,7 @@ class Text extends Model
 
     protected $fillable = [
         'qu_idx',
+        'te_type',
         'me_idx'
     ];
 }

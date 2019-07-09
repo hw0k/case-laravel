@@ -22,4 +22,8 @@ class User extends Model
         'u_gender',
         'u_profile'
     ];
+
+    public function interests(){
+        return $this->hasMany('App\Interest', 'u_idx', 'u_idx');
+    }
 }

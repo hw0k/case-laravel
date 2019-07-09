@@ -14,4 +14,8 @@ class Interest extends Model
     protected $fillable = [
         'i_idx'
     ];
+
+    public function interestName(){
+        return $this->belongsTo('App\Interest_RF', 'i_idx', 'i_idx');
+    }
 }

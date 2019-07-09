@@ -15,6 +15,7 @@ class CreateCaseTextTable extends Migration
     {
         Schema::create('CASE_TEXT_TB', function (Blueprint $table) {
             $table->bigInteger('qu_idx')->unsigned();
+            $table->string('te_type');
             $table->bigInteger('me_idx')->nullable()->unsigned();
 
             $table->primary('qu_idx');

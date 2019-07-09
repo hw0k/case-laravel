@@ -40,6 +40,7 @@ class CaseController
         } else {
             $quizDetail = new Text();
             $quizDetail->qu_idx = $quiz->qu_idx;
+            $quizDetail->te_type = $request->input('type');
             if($request->hasFile('media')){
                 $quizDetail->me_idx = $this->addMedia($request->file('media'));
             }
@@ -147,6 +148,8 @@ class CaseController
             $quizDetail['qu_table'] = $quizList->quizDetail->qu_table;
             if($quizList->quizDetail->qu_table == 'example')
                 $quizDetail['qu_type'] = $quizList->quizDetail->quizExample->ex_type;
+            else
+                $quizDetail['qu_type'] = $quizList->quizDetail->quizText->te_type;
 
             $quiz['quiz_detail'] = $quizDetail;
             array_push($quizs, $quiz);
