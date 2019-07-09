@@ -26,8 +26,7 @@ class Survey extends Model
         'ca_participant'
     ];
 
-    public function setUpdatedAt($value)
-    {
+    public function setUpdatedAt($value){
         return $this;
     }
 

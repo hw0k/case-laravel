@@ -22,4 +22,12 @@ class Quiz extends Model
         'qu_rAnswer',
         'qu_table'
     ];
+
+    public function quizExample(){
+        return $this->hasOne('App\Example', 'qu_idx', 'qu_idx');
+    }
+
+    public function quizText(){
+        return $this->hasOne('App\Text', 'qu_idx', 'qu_idx');
+    }
 }

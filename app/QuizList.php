@@ -23,4 +23,8 @@ class QuizList extends Model
         'qu_li_sequence',
         'qu_idx'
     ];
+
+    public function quizDetail(){
+        return $this->belongsTo('App\Quiz', 'qu_idx', 'qu_idx');
+    }
 }

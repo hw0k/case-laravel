@@ -123,7 +123,37 @@ class CaseController
     }
 
     public function show(Request $request, $id){
+        $survey = Survey::findOrFail($id);
 
+
+        $response = array();
+        $response['ca_idx'] = $survey->ca_idx;
+        $response['ca_title'] = $survey->ca_title;
+        $response['ca_content'] = $survey->ca_content;
+        $response['ca_point'] = $survey->ca_point;
+        $response['ca_participant'] = $survey->ca_participant;
+        $response['ca_created'] = $survey->ca_created;
+        $response['u_name'] = $survey->user->u_name;
+        $response['tags'] = $survey->tags;
+
+        $quizs = array();
+        foreach ($survey->quizs as $quizList){
+            $quiz = array();
+            $quiz['qu_idx'] = $quizList->qu_idx;
+            $quiz['qu_li_sequence'] = $quizList->qu_li_sequence;
+
+            $quizDetail = array();
+            $quizDetail['qu_question'] = $quizList->quizDetail->qu_question;
+            $quizDetail['qu_table'] = $quizList->quizDetail->qu_table;
+            if($quizList->quizDetail->qu_table == 'example')
+                $quizDetail['qu_type'] = $quizList->quizDetail->quizExample->ex_type;
+
+            $quiz['quiz_detail'] = $quizDetail;
+            array_push($quizs, $quiz);
+        }
+        $response['quizs'] = $quizs;
+
+        return response()->json($response, Response::HTTP_OK);
     }
 
     public function getInterest(Request $request){
