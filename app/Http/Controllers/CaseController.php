@@ -102,8 +102,6 @@ class CaseController
     }
 
     public function list(Request $request){
-        date_default_timezone_set('Asia/Seoul');
-
         $list = Survey::all();
 
         $response = array();
@@ -111,6 +109,7 @@ class CaseController
             $temp = array();
             $temp['ca_idx'] = $survey->ca_idx;
             $temp['ca_title'] = $survey->ca_title;
+            $temp['ca_content'] = $survey->ca_content;
             $temp['ca_point'] = $survey->ca_point;
             $temp['ca_participant'] = $survey->ca_participant;
             $temp['ca_created'] = date(DATE_ATOM, strtotime($survey->ca_created));
