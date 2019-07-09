@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 
 use App\Example;
 use App\ExampleColumn;
+use App\Interest_RF;
 use App\Media;
 use App\Quiz;
 use App\QuizList;
@@ -120,6 +121,12 @@ class CaseController
 
     public function show(Request $request, $id){
 
+    }
+
+    public function getInterest(Request $request){
+        $interests = Interest_RF::all();
+
+        return response()->json($interests, Response::HTTP_OK);
     }
 
     public function addMedia($file){
