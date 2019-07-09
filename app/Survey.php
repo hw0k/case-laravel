@@ -26,6 +26,11 @@ class Survey extends Model
         'ca_participant'
     ];
 
+    public function setUpdatedAt($value)
+    {
+        return $this;
+    }
+
     public function tags(){
         return $this->hasMany('App\Tag', 'ca_idx', 'ca_idx');
     }
