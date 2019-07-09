@@ -70,6 +70,7 @@ class CaseController
         $case = new Survey();
 
         $case->ca_title = $request->input('title');
+        $case->ca_content = $request->input('content');
         $case->u_idx = $request->input('user');
         $case->ca_point = $request->input('point');
 
