@@ -18,7 +18,7 @@ class UserController
 {
     public function idCheck(Request $request, $account){
         $user = User::where('u_account', '=', $account)->firstOrFail();
-        return response()->json(['status' => $user],Response::HTTP_OK);
+        return response()->json(['idx' => $user->u_idx],Response::HTTP_OK);
     }
 
     public function register(Request $request){
@@ -97,6 +97,7 @@ class UserController
     public function show(Request $request, $id){
         $user = User::findOrFail($id);
 
+        $user->u_password = null;
         return response()->json($user, Response::HTTP_OK);
     }
 }
