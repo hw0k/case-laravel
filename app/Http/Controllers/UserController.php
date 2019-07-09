@@ -98,6 +98,11 @@ class UserController
         $user = User::findOrFail($id);
 
         $user->u_password = null;
+        $user->interests;
+
+        foreach ($user->interests as $interest){
+            $interest->interestName;
+        }
         return response()->json($user, Response::HTTP_OK);
     }
 }
