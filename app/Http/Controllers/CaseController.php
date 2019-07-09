@@ -102,7 +102,20 @@ class CaseController
     public function list(Request $request){
         $list = Survey::all();
 
-        return response()->json($list, Response::HTTP_OK);
+        $response = array();
+        foreach ($list as $survey){
+            $temp = array();
+            $temp['ca_idx'] = $survey->ca_idx;
+            $temp['ca_title'] = $survey->ca_title;
+            $temp['ca_point'] = $survey->ca_point;
+            $temp['ca_participant'] = $survey->ca_participant;
+            $temp['ca_created'] = $survey->ca_created;
+            $temp['u_name'] = $survey->user->u_name;
+            $temp['tags'] = Survey::find($survey->ca_idx)->tags;
+            array_push($response, $temp);
+        }
+
+        return response()->json($response, Response::HTTP_OK);
     }
 
     public function show(Request $request, $id){

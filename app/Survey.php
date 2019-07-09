@@ -15,11 +15,21 @@ class Survey extends Model
 {
     protected $table = 'CASE_TB';
     protected $primaryKey = 'ca_idx';
-    public $timestamps = false;
+    public $timestamps = ['created_at'];
+    const CREATED_AT = 'ca_created';
 
     protected $fillable = [
         'ca_title',
         'u_idx',
-        'ca_point'
+        'ca_point',
+        'ca_participant'
     ];
+
+    public function tags(){
+        return $this->hasMany('App\Tag', 'ca_idx', 'ca_idx');
+    }
+
+    public function user(){
+        return $this->belongsTo('App\User', 'u_idx','u_idx');
+    }
 }
