@@ -16,7 +16,7 @@ class CreateQuizTable extends Migration
         Schema::create('QUIZ_TB', function (Blueprint $table) {
             $table->bigIncrements('qu_idx');
             $table->string('qu_question');
-            $table->string('qu_rAnswer');
+            $table->string('qu_rAnswer')->nullable();
             $table->string('qu_table');
             $table->engine = 'InnoDB';
         });

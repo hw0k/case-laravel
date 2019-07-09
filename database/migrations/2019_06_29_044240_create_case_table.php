@@ -18,6 +18,8 @@ class CreateCaseTable extends Migration
             $table->string('ca_title');
             $table->bigInteger('u_idx')->unsigned();
             $table->integer('ca_point')->default(0);
+            $table->integer('ca_participant')->default(0);
+            $table->dateTime('ca_created');
 
             $table->foreign('u_idx')->references('u_idx')->on('USER_TB');
             $table->engine = 'InnoDB';
