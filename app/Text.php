@@ -23,4 +23,8 @@ class Text extends Model
         'te_type',
         'me_idx'
     ];
+
+    public function media(){
+        return $this->belongsTo('App\Media', 'me_idx', 'me_idx');
+    }
 }

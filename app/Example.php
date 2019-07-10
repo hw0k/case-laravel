@@ -22,4 +22,8 @@ class Example extends Model
         'qu_idx',
         'ex_type'
     ];
+
+    public function columns(){
+        return $this->hasMany('App\ExampleColumn', 'qu_idx', 'qu_idx');
+    }
 }
