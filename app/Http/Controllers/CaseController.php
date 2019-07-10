@@ -37,6 +37,9 @@ class CaseController
             $quizDetail = new Example();
             $quizDetail->qu_idx = $quiz->qu_idx;
             $quizDetail->ex_type = $request->input('type');
+            if($request->hasFile('media')){
+                $quizDetail->me_idx = $this->addMedia($request->file('media'));
+            }
         } else {
             $quizDetail = new Text();
             $quizDetail->qu_idx = $quiz->qu_idx;

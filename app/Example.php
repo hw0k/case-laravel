@@ -20,10 +20,15 @@ class Example extends Model
 
     protected $fillable = [
         'qu_idx',
-        'ex_type'
+        'ex_type',
+        'me_idx',
     ];
 
     public function columns(){
         return $this->hasMany('App\ExampleColumn', 'qu_idx', 'qu_idx');
+    }
+
+    public function media(){
+        return $this->belongsTo('App\Media', 'me_idx', 'me_idx');
     }
 }
