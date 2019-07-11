@@ -242,6 +242,8 @@ class CaseController
         $columns = $quizExample->columns;
 
         foreach($columns as $column){
+            $column->media;
+            unset($column->me_idx);
             unset($column->qu_idx);
             unset($column->ex_co_number);
         }
@@ -282,6 +284,9 @@ class CaseController
         $response = array();
         foreach($selectColumns as $selectColumn){
             $column = $selectColumn->column;
+            $column->media;
+            
+            unset($column->me_idx);
             unset($column->qu_idx);
             unset($column->ex_co_number);
             array_push($response, $column);
