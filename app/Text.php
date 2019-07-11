@@ -27,4 +27,8 @@ class Text extends Model
     public function media(){
         return $this->belongsTo('App\Media', 'me_idx', 'me_idx');
     }
+
+    public function answers(){
+        return $this->hasMany('App\Text_A', 'qu_idx', 'qu_idx');
+    }
 }

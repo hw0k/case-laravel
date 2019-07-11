@@ -29,6 +29,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function (){
        Route::get('/', 'CaseController@list');
        Route::get('/{id}', 'CaseController@show');
        Route::get('/{id}/{sequence}', 'CaseController@showQuiz');
+       Route::post('/lastQuiz/{id}', 'CaseController@showLastQuiz');
     });
     Route::get('test', 'TestController');
 });
