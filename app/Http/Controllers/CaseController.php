@@ -161,6 +161,35 @@ class CaseController
         return response()->json($response, Response::HTTP_OK);
     }
 
+    public function showLastQuiz(Request $request, $id){
+        $quizs = QuizList::where('ca_idx', '=', $id)->get();
+        
+        foreach($quizs as $quiz){
+            $quizDetail = $quiz->quizDetail;
+
+            if($quizDetail->qu_table == 'example')
+                $quizType = $quizDetail->quizExample;
+            else
+                $quizType = $quizDetail->quizText;
+
+            $quizAnswers = $quizType->answers;
+
+            if(count($quizAnswers) != 0){
+                foreach($quizAnswers as $quizAnswer){
+                    if($quizAnswer->u_idx == $request->input('user')) {
+                        break;
+                    } else {
+                        return response()->json($this->unsetQuiz($quiz), Response::HTTP_OK);
+                    }
+                }
+            } else {
+                return response()->json($this->unsetQuiz($quiz), Response::HTTP_OK);
+            }
+        }
+
+        return response()->json(['status' => 'Already Joined Survey'], Response::HTTP_OK);
+    }
+
     public function showQuiz(Request $request, $id, $sequence){
         $quiz = QuizList::where('ca_idx', '=', $id)->where('qu_li_sequence','=', $sequence)->firstOrFail();
 
@@ -178,7 +207,7 @@ class CaseController
             if($quizText->me_idx != null)
                 $quizText->media->me_name;
         }
-        return response()->json($quiz, Response::HTTP_OK);
+        return response()->json($this->unsetQuiz($quiz), Response::HTTP_OK);
     }
 
     public function getInterest(Request $request){
@@ -199,5 +228,21 @@ class CaseController
         $media->save();
 
         return $media->me_idx;
+    }
+
+    public function unsetQuiz($quiz){
+        $quizDetail = $quiz->quizDetail;
+        
+        if($quizDetail->qu_table == 'example'){
+            $quizType = $quizDetail->quizExample;
+        } else {
+            $quizType = $quizDetail->quizText;
+        }
+
+        unset($quizDetail->qu_idx);
+        unset($quizType->qu_idx);
+        unset($quizType->answers);
+
+        return $quiz;
     }
 }

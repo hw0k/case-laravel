@@ -31,4 +31,8 @@ class Example extends Model
     public function media(){
         return $this->belongsTo('App\Media', 'me_idx', 'me_idx');
     }
+
+    public function answers(){
+        return $this->hasMany('App\Example_A', 'qu_idx', 'qu_idx');
+    }
 }
