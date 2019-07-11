@@ -10,6 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', function () {
+    return view('landing');
+});
 Route::post('deploy', 'UtilController@deploy');
 
 Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
