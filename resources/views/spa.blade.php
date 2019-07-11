@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <script defer src="{{ mix('js/app.client.js') }}"></script>
-    <title>Document</title>
+    <title>Case</title>
 </head>
 
 <body>

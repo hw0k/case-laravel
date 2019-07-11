@@ -2757,8 +2757,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_upload_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-upload-component */ "./node_modules/vue-upload-component/dist/vue-upload-component.js");
-/* harmony import */ var vue_upload_component__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_upload_component__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue_upload_component_dist_vue_upload_component_part__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-upload-component/dist/vue-upload-component.part */ "./node_modules/vue-upload-component/dist/vue-upload-component.part.js");
+/* harmony import */ var vue_upload_component_dist_vue_upload_component_part__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_upload_component_dist_vue_upload_component_part__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_form_CaseFormWizard_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/form/CaseFormWizard.vue */ "./resources/js/components/form/CaseFormWizard.vue");
 //
 //
@@ -2904,7 +2904,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   components: {
     CaseFormWizard: _components_form_CaseFormWizard_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    FileUpload: vue_upload_component__WEBPACK_IMPORTED_MODULE_0___default.a
+    FileUpload: vue_upload_component_dist_vue_upload_component_part__WEBPACK_IMPORTED_MODULE_0___default.a
   }
 });
 
@@ -3197,8 +3197,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_upload_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-upload-component */ "./node_modules/vue-upload-component/dist/vue-upload-component.js");
-/* harmony import */ var vue_upload_component__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_upload_component__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue_upload_component_dist_vue_upload_component_part__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-upload-component/dist/vue-upload-component.part */ "./node_modules/vue-upload-component/dist/vue-upload-component.part.js");
+/* harmony import */ var vue_upload_component_dist_vue_upload_component_part__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_upload_component_dist_vue_upload_component_part__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_form_CaseFormWizard_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/form/CaseFormWizard.vue */ "./resources/js/components/form/CaseFormWizard.vue");
 //
 //
@@ -3353,7 +3353,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   components: {
     CaseFormWizard: _components_form_CaseFormWizard_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    FileUpload: vue_upload_component__WEBPACK_IMPORTED_MODULE_0___default.a
+    FileUpload: vue_upload_component_dist_vue_upload_component_part__WEBPACK_IMPORTED_MODULE_0___default.a
   }
 });
 
@@ -3444,7 +3444,7 @@ __webpack_require__.r(__webpack_exports__);
       sort: 'popular'
     };
   },
-  created: function created() {
+  mounted: function mounted() {
     var _this = this;
 
     this.$http.get('/case/getInterest').then(function (_ref) {
@@ -4158,8 +4158,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_upload_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-upload-component */ "./node_modules/vue-upload-component/dist/vue-upload-component.js");
-/* harmony import */ var vue_upload_component__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_upload_component__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue_upload_component_dist_vue_upload_component_part__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-upload-component/dist/vue-upload-component.part */ "./node_modules/vue-upload-component/dist/vue-upload-component.part.js");
+/* harmony import */ var vue_upload_component_dist_vue_upload_component_part__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_upload_component_dist_vue_upload_component_part__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -4259,7 +4259,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   name: 'tournament-item',
   components: {
-    FileUpload: vue_upload_component__WEBPACK_IMPORTED_MODULE_0___default.a
+    FileUpload: vue_upload_component_dist_vue_upload_component_part__WEBPACK_IMPORTED_MODULE_0___default.a
   },
   props: ['idx']
 });
@@ -30493,7 +30493,7 @@ var render = function() {
                                             src:
                                               _vm.images.length > 0
                                                 ? _vm.images[0].url
-                                                : "@/assets/images/profile/default.png"
+                                                : __webpack_require__(/*! @/assets/images/default.jpg */ "./resources/js/assets/images/default.jpg")
                                           }
                                         })
                                       ]
@@ -30503,7 +30503,7 @@ var render = function() {
                                         src:
                                           _vm.images.length > 0
                                             ? _vm.images[0].url
-                                            : "@/assets/images/profile/default.png"
+                                            : __webpack_require__(/*! @/assets/images/default.jpg */ "./resources/js/assets/images/default.jpg")
                                       }
                                     })
                               ],
@@ -31106,7 +31106,7 @@ var render = function() {
                                             src:
                                               _vm.images.length > 0
                                                 ? _vm.images[0].url
-                                                : "@/assets/images/profile/default.png"
+                                                : __webpack_require__(/*! @/assets/images/default.jpg */ "./resources/js/assets/images/default.jpg")
                                           }
                                         })
                                       ]
@@ -31116,7 +31116,7 @@ var render = function() {
                                         src:
                                           _vm.images.length > 0
                                             ? _vm.images[0].url
-                                            : "@/assets/images/profile/default.png"
+                                            : __webpack_require__(/*! @/assets/images/default.jpg */ "./resources/js/assets/images/default.jpg")
                                       }
                                     })
                               ],
@@ -32088,7 +32088,7 @@ var render = function() {
                     src:
                       _vm.images.length > 0
                         ? _vm.images[0].url
-                        : "@/assets/images/profile/default.png"
+                        : __webpack_require__(/*! @/assets/images/default.jpg */ "./resources/js/assets/images/default.jpg")
                   }
                 })
               ]
@@ -32098,7 +32098,7 @@ var render = function() {
                 src:
                   _vm.images.length > 0
                     ? _vm.images[0].url
-                    : "@/assets/images/profile/default.png"
+                    : __webpack_require__(/*! @/assets/images/default.jpg */ "./resources/js/assets/images/default.jpg")
               }
             })
       ],
@@ -43878,10 +43878,10 @@ if (inBrowser && window.Vue) {
 
 /***/ }),
 
-/***/ "./node_modules/vue-upload-component/dist/vue-upload-component.js":
-/*!************************************************************************!*\
-  !*** ./node_modules/vue-upload-component/dist/vue-upload-component.js ***!
-  \************************************************************************/
+/***/ "./node_modules/vue-upload-component/dist/vue-upload-component.part.js":
+/*!*****************************************************************************!*\
+  !*** ./node_modules/vue-upload-component/dist/vue-upload-component.part.js ***!
+  \*****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -45844,7 +45844,6 @@ if (inBrowser && window.Vue) {
 
   /* script */
   var __vue_script__$1 = script$1;
-
   /* template */
   var __vue_render__$1 = function __vue_render__() {
     var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('span', { class: _vm.className }, [_vm._t("default"), _vm._v(" "), _c('label', { attrs: { "for": _vm.inputId || _vm.name } }), _vm._v(" "), _c('input-file')], 2);
@@ -45852,10 +45851,7 @@ if (inBrowser && window.Vue) {
   var __vue_staticRenderFns__$1 = [];
 
   /* style */
-  var __vue_inject_styles__$1 = function (inject) {
-    if (!inject) return;
-    inject("data-v-595958af_0", { source: "\n.file-uploads{overflow:hidden;position:relative;text-align:center;display:inline-block\n}\n.file-uploads.file-uploads-html4 input,.file-uploads.file-uploads-html5 label{background:#fff;opacity:0;font-size:20em;z-index:1;top:0;left:0;right:0;bottom:0;position:absolute;width:100%;height:100%\n}\n.file-uploads.file-uploads-html4 label,.file-uploads.file-uploads-html5 input{background:rgba(255,255,255,0);overflow:hidden;position:fixed;width:1px;height:1px;z-index:-1;opacity:0\n}", map: undefined, media: undefined });
-  };
+  var __vue_inject_styles__$1 = undefined;
   /* scoped */
   var __vue_scope_id__$1 = undefined;
   /* module identifier */
@@ -45875,30 +45871,6 @@ if (inBrowser && window.Vue) {
     }
 
     component._scopeId = scope;
-
-    {
-      var hook = void 0;
-      if (style) {
-        hook = function hook(context) {
-          style.call(this, createInjector(context));
-        };
-      }
-
-      if (hook !== undefined) {
-        if (component.functional) {
-          // register for functional component in vue file
-          var originalRender = component.render;
-          component.render = function renderWithStyleInjection(h, context) {
-            hook.call(context);
-            return originalRender(h, context);
-          };
-        } else {
-          // inject component registration as beforeCreate hook
-          var existing = component.beforeCreate;
-          component.beforeCreate = existing ? [].concat(existing, hook) : [hook];
-        }
-      }
-    }
 
     return component;
   }
@@ -45977,7 +45949,7 @@ if (inBrowser && window.Vue) {
   return src;
 
 })));
-//# sourceMappingURL=vue-upload-component.js.map
+//# sourceMappingURL=vue-upload-component.part.js.map
 
 
 /***/ }),
@@ -72577,6 +72549,17 @@ vue_server_renderer_basic__WEBPACK_IMPORTED_MODULE_0___default()(_app__WEBPACK_I
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/js/assets/images/default.jpg":
+/*!************************************************!*\
+  !*** ./resources/js/assets/images/default.jpg ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/default.jpg?26002ee65541539341b832fa63c78068";
 
 /***/ }),
 

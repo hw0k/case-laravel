@@ -33,7 +33,7 @@
                     :src="
                       images.length > 0
                         ? images[0].url
-                        : '@/assets/images/profile/default.png'
+                        : require('@/assets/images/default.jpg')
                     "
                   />
                 </file-upload>
@@ -42,7 +42,7 @@
                   :src="
                     images.length > 0
                       ? images[0].url
-                      : '@/assets/images/profile/default.png'
+                      : require('@/assets/images/default.jpg')
                   "
                 />
               </div>
@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import FileUpload from 'vue-upload-component';
+import FileUpload from 'vue-upload-component/dist/vue-upload-component.part';
 import CaseFormWizard from '@/components/form/CaseFormWizard.vue';
 
 export default {
