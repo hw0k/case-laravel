@@ -104,7 +104,6 @@ class UserController
         }
 
         unset($user->u_password);
-        unset($user->u_email);
         unset($user->u_phone);
         return response()->json($user, Response::HTTP_OK);
     }
