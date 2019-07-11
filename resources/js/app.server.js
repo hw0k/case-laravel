@@ -1,10 +1,14 @@
-import App from './App';
+/* global context, dispatch */
 
 import renderVueComponentToString from 'vue-server-renderer/basic';
+import app from './app';
 
-renderVueComponentToString(App, (err, html) => {
-  if (err) {
-    throw new Error('Rendering error occured.');
-  }
-  dispatch(html);
+
+app.$router.push(context.url);
+
+renderVueComponentToString(app, (err, html) => {
+    if (err) {
+        throw new Error(err);
+    }
+    dispatch(html);
 });

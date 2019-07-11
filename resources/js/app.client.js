@@ -1,3 +1,4 @@
-import App from './App';
+import app from './app';
+import './bootstrap';
 
-App.$mount('#app');
+app.$mount('#app');
