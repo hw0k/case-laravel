@@ -23,4 +23,8 @@ class ExampleColumn extends Model
         'ex_co_number',
         'me_idx'
     ];
+
+    public function media(){
+        return $this->hasOne('App\Media', 'me_idx', 'me_idx');
+    }
 }

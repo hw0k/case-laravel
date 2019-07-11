@@ -37,6 +37,9 @@ class CaseController
             $quizDetail = new Example();
             $quizDetail->qu_idx = $quiz->qu_idx;
             $quizDetail->ex_type = $request->input('type');
+            if($request->hasFile('media')){
+                $quizDetail->me_idx = $this->addMedia($request->file('media'));
+            }
         } else {
             $quizDetail = new Text();
             $quizDetail->qu_idx = $quiz->qu_idx;
@@ -126,7 +129,6 @@ class CaseController
     public function show(Request $request, $id){
         $survey = Survey::findOrFail($id);
 
-
         $response = array();
         $response['ca_idx'] = $survey->ca_idx;
         $response['ca_title'] = $survey->ca_title;
@@ -159,6 +161,26 @@ class CaseController
         return response()->json($response, Response::HTTP_OK);
     }
 
+    public function showQuiz(Request $request, $id, $sequence){
+        $quiz = QuizList::where('ca_idx', '=', $id)->where('qu_li_sequence','=', $sequence)->firstOrFail();
+
+        $quizDetail = $quiz->quizDetail;
+
+        if($quizDetail->qu_table == 'example') {
+            $quizExample = $quizDetail->quizExample;
+            $columns = $quizExample->columns;
+            foreach($columns as $column){
+                if($column->me_idx != null)
+                    $column->media;
+            }
+        } else {
+            $quizText = $quizDetail->quizText;
+            if($quizText->me_idx != null)
+                $quizText->media->me_name;
+        }
+        return response()->json($quiz, Response::HTTP_OK);
+    }
+
     public function getInterest(Request $request){
         $interests = Interest_RF::all();
 
@@ -169,6 +191,7 @@ class CaseController
         $media = new Media();
 
         $extension = $file->getClientOriginalExtension();
+        $media->me_type = $extension;
         $filename = time().'.'.$extension;
         $file->move('uploads/media/', $filename);
         $media->me_path = '/uploads/media/'.$filename;
