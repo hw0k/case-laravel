@@ -10,9 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::post('deploy', 'UtilController@deploy');
 
-Route::group(['prefix' => 'api', 'middleware' => 'cors'], function (){
-    Route::group(['prefix' => 'user'], function (){
+Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
+    Route::group(['prefix' => 'user'], function () {
         Route::get('/idCheck/{account}', 'UserController@idCheck');
         Route::post('/register', 'UserController@register');
         Route::post('/login', 'UserController@login');
@@ -21,15 +22,15 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function (){
         Route::post('/setProfile/{id}', 'UserController@setProfile');
         Route::get('/{id}', 'UserController@show');
     });
-    Route::group(['prefix' => 'case'], function (){
-       Route::post('/addQuiz', 'CaseController@createQuiz');
-       Route::post('/addColumn', 'CaseController@addColumn');
-       Route::post('/addCase', 'CaseController@createCase');
-       Route::get('/getInterest', 'CaseController@getInterest');
-       Route::get('/', 'CaseController@list');
-       Route::get('/{id}', 'CaseController@show');
-       Route::get('/{id}/{sequence}', 'CaseController@showQuiz');
-       Route::post('/lastQuiz/{id}', 'CaseController@showLastQuiz');
+    Route::group(['prefix' => 'case'], function () {
+        Route::post('/addQuiz', 'CaseController@createQuiz');
+        Route::post('/addColumn', 'CaseController@addColumn');
+        Route::post('/addCase', 'CaseController@createCase');
+        Route::get('/getInterest', 'CaseController@getInterest');
+        Route::get('/', 'CaseController@list');
+        Route::get('/{id}', 'CaseController@show');
+        Route::get('/{id}/{sequence}', 'CaseController@showQuiz');
+        Route::post('/lastQuiz/{id}', 'CaseController@showLastQuiz');
     });
     Route::get('test', 'TestController');
 });
