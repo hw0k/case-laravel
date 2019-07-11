@@ -22,7 +22,6 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
         Route::post('/setProfile/{id}', 'UserController@setProfile');
         Route::get('/{id}', 'UserController@show');
     });
-<<<<<<< HEAD
     Route::group(['prefix' => 'case'], function (){
        Route::post('/addQuiz', 'CaseController@createQuiz');
        Route::post('/addColumn', 'CaseController@addColumn');
@@ -33,17 +32,6 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
        Route::get('/{id}/{sequence}', 'CaseController@showQuiz');
        Route::post('/lastQuiz/{id}', 'CaseController@showLastQuiz');
        Route::post('/solve', 'CaseController@solve');
-=======
-    Route::group(['prefix' => 'case'], function () {
-        Route::post('/addQuiz', 'CaseController@createQuiz');
-        Route::post('/addColumn', 'CaseController@addColumn');
-        Route::post('/addCase', 'CaseController@createCase');
-        Route::get('/getInterest', 'CaseController@getInterest');
-        Route::get('/', 'CaseController@list');
-        Route::get('/{id}', 'CaseController@show');
-        Route::get('/{id}/{sequence}', 'CaseController@showQuiz');
-        Route::post('/lastQuiz/{id}', 'CaseController@showLastQuiz');
->>>>>>> 5c1514744bd8173f2f79aecb93cc6be473f4643e
     });
     Route::get('test', 'TestController');
 });
