@@ -21,6 +21,7 @@ module.exports = {
         "no-restricted-properties": 0,
         "object-curly-newline": 0,
         "no-underscore-dangle": 0,
+        "import/extensions": 0,
         "linebreak-style": "off",
         "indent": ["error", 4],
         "import/no-unresolved": "off"
