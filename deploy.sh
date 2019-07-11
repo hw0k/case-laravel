@@ -1,4 +1,4 @@
 #!/bin/sh
 
 # update source code
-git pull
+git pull origin master --force
