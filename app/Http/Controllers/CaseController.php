@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 
 use App\Example;
 use App\ExampleColumn;
+use App\Example_A;
 use App\Interest_RF;
 use App\Media;
 use App\Quiz;
@@ -18,6 +19,7 @@ use App\QuizList;
 use App\Survey;
 use App\Tag;
 use App\Text;
+use App\Text_A;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -210,6 +212,27 @@ class CaseController
         return response()->json($this->unsetQuiz($quiz), Response::HTTP_OK);
     }
 
+    public function solve(Request $request){
+        $quizIdx = $request->input('quiz');
+        $userIdx = $request->input('user');
+        
+        $quiz = Quiz::where('qu_idx', '=', $quizIdx)->firstOrFail();
+
+        if($quiz->qu_table == 'example') {
+            $answer = new Examle_A();
+            $answer->ex_a_answer = $request->input('answer');
+        } else {
+            $answer = new Text_A();
+            $answer->te_a_answer = $request->input('answer');
+        }
+
+        $answer->qu_idx = $quizIdx;
+        $answer->u_idx = $userIdx;
+        
+        $answer->save();
+
+        return response()->json($answer, Response::HTTP_OK);
+    }
     public function getInterest(Request $request){
         $interests = Interest_RF::all();
 
