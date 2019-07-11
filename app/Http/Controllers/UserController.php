@@ -97,12 +97,15 @@ class UserController
     public function show(Request $request, $id){
         $user = User::findOrFail($id);
 
-        $user->u_password = null;
         $user->interests;
 
         foreach ($user->interests as $interest){
             $interest->interestName;
         }
+
+        unset($user->u_password);
+        unset($user->u_email);
+        unset($user->u_phone);
         return response()->json($user, Response::HTTP_OK);
     }
 }
