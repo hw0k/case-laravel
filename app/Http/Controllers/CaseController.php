@@ -239,8 +239,8 @@ class CaseController
         $quiz = Quiz::where('qu_idx', '=', $request->input('quiz'))->firstOrFail();
   
         $quizExample = $quiz->quizExample;
-        $columns = $quizExample->columns;
-
+        $columns = $quizExample->random_columns;
+    
         foreach($columns as $column){
             $column->media;
             unset($column->me_idx);
@@ -279,13 +279,13 @@ class CaseController
 
     public function nextRound(Request $request){
         $selectColumns = Tournament_A::where('to_a_round', '=', $request->input('round'))
-                            ->where('u_idx', '=', $request->input('user'))->get();
+                            ->where('u_idx', '=', $request->input('user'))->inRandomOrder()->get();
         
         $response = array();
         foreach($selectColumns as $selectColumn){
             $column = $selectColumn->column;
             $column->media;
-            
+
             unset($column->me_idx);
             unset($column->qu_idx);
             unset($column->ex_co_number);

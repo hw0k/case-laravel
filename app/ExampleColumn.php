@@ -27,4 +27,6 @@ class ExampleColumn extends Model
     public function media(){
         return $this->hasOne('App\Media', 'me_idx', 'me_idx');
     }
+
+    
 }

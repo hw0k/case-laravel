@@ -35,4 +35,8 @@ class Example extends Model
     public function answers(){
         return $this->hasMany('App\Example_A', 'qu_idx', 'qu_idx');
     }
+
+    public function getRandomColumnsAttribute(){
+        return $this->columns()->orderByRaw('RAND()')->get();
+    }
 }
