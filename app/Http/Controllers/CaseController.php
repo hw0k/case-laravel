@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 
 use App\Example;
 use App\ExampleColumn;
+use App\Example_A;
 use App\Interest_RF;
 use App\Media;
 use App\Quiz;
@@ -18,6 +19,8 @@ use App\QuizList;
 use App\Survey;
 use App\Tag;
 use App\Text;
+use App\Text_A;
+use App\Tournament_A;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -208,6 +211,83 @@ class CaseController
                 $quizText->media->me_name;
         }
         return response()->json($this->unsetQuiz($quiz), Response::HTTP_OK);
+    }
+
+    public function solve(Request $request){
+        $quizIdx = $request->input('quiz');
+        $userIdx = $request->input('user');
+        
+        $quiz = Quiz::where('qu_idx', '=', $quizIdx)->firstOrFail();
+
+        if($quiz->qu_table == 'example') {
+            $answer = new Examle_A();
+            $answer->ex_a_answer = $request->input('answer');
+        } else {
+            $answer = new Text_A();
+            $answer->te_a_answer = $request->input('answer');
+        }
+
+        $answer->qu_idx = $quizIdx;
+        $answer->u_idx = $userIdx;
+        
+        $answer->save();
+
+        return response()->json($answer, Response::HTTP_OK);
+    }
+
+    public function startTournament(Request $request){
+        $quiz = Quiz::where('qu_idx', '=', $request->input('quiz'))->firstOrFail();
+  
+        $quizExample = $quiz->quizExample;
+        $columns = $quizExample->columns;
+
+        foreach($columns as $column){
+            unset($column->qu_idx);
+            unset($column->ex_co_number);
+        }
+
+        unset($quiz->qu_rAnswer);
+        unset($quizExample->me_idx);
+        unset($quizExample->qu_idx);
+
+        return response()->json($columns, Response::HTTP_OK);
+    }
+
+    public function chooseTournament(Request $request){
+        if($request->input('round') != 1){
+            $answer = new Tournament_A();
+            $answer->u_idx = $request->input('user');
+            $answer->to_a_round = $request->input('round');
+            $answer->ex_co_idx = $request->input('column');
+
+            $answer->save();
+        } else {
+            $answer = new Example_A();
+            $answer->u_idx = $request->input('user');
+            $answer->qu_idx = $request->input('quiz');
+            $answer->ex_a_answer = $request->input('column');
+
+            $answer->save();
+
+            Tournament_A::where('u_idx', '=', $request->input('user'))->delete();
+        }
+
+        return response()->json($answer, Response::HTTP_OK);
+    }
+
+    public function nextRound(Request $request){
+        $selectColumns = Tournament_A::where('to_a_round', '=', $request->input('round'))
+                            ->where('u_idx', '=', $request->input('user'))->get();
+        
+        $response = array();
+        foreach($selectColumns as $selectColumn){
+            $column = $selectColumn->column;
+            unset($column->qu_idx);
+            unset($column->ex_co_number);
+            array_push($response, $column);
+        }
+
+        return response()->json($response, Response::HTTP_OK);
     }
 
     public function getInterest(Request $request){

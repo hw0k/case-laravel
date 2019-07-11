@@ -25,15 +25,19 @@ Route::group(['prefix' => 'api', 'middleware' => 'cors'], function () {
         Route::post('/setProfile/{id}', 'UserController@setProfile');
         Route::get('/{id}', 'UserController@show');
     });
-    Route::group(['prefix' => 'case'], function () {
-        Route::post('/addQuiz', 'CaseController@createQuiz');
-        Route::post('/addColumn', 'CaseController@addColumn');
-        Route::post('/addCase', 'CaseController@createCase');
-        Route::get('/getInterest', 'CaseController@getInterest');
-        Route::get('/', 'CaseController@list');
-        Route::get('/{id}', 'CaseController@show');
-        Route::get('/{id}/{sequence}', 'CaseController@showQuiz');
-        Route::post('/lastQuiz/{id}', 'CaseController@showLastQuiz');
+    Route::group(['prefix' => 'case'], function (){
+       Route::post('/addQuiz', 'CaseController@createQuiz');
+       Route::post('/addColumn', 'CaseController@addColumn');
+       Route::post('/addCase', 'CaseController@createCase');
+       Route::get('/getInterest', 'CaseController@getInterest');
+       Route::get('/', 'CaseController@list');
+       Route::get('/{id}', 'CaseController@show');
+       Route::get('/{id}/{sequence}', 'CaseController@showQuiz');
+       Route::post('/lastQuiz/{id}', 'CaseController@showLastQuiz');
+       Route::post('/tournament', 'CaseController@startTournament');
+       Route::post('/solve/tournament', 'CaseController@chooseTournament');
+       Route::post('/tournament/next', 'CaseController@nextRound');
+       Route::post('/solve', 'CaseController@solve');
     });
     Route::get('test', 'TestController');
 });
