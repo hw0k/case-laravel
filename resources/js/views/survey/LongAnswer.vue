@@ -13,7 +13,7 @@
                 v-validate="'required'"
               />
 
-              <vs-button @click="AddImage" class="m-6">이미지 추가</vs-button>
+              <vs-button @click="AddImage" class="mt-6">이미지 추가</vs-button>
               <div class=" w-full mb-2 vx-col" v-if="isAdd">
                 <file-upload
                   v-if="isSet"
@@ -28,6 +28,7 @@
                         ? images[0].url
                         : require('@/assets/images/default.jpg')
                     "
+                    class="sm:w-2/3 w-full mb-2 mt-6"
                   />
                 </file-upload>
                 <img
@@ -37,6 +38,7 @@
                       ? images[0].url
                       : require('@/assets/images/default.jpg')
                   "
+                  class="sm:w-2/3 w-full mb-2 mt-6"
                 />
               </div>
             </div>

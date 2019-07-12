@@ -5,7 +5,7 @@
   >
     <case-sidebar
       :sidebarItems="sidebarItems"
-      title="Case"
+      title="CASE"
       parent=".layout--main"
     />
 

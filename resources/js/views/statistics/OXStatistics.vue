@@ -38,7 +38,7 @@ export default {
             },
             barChart: {
                 series: [{
-                    data: [580, 690, 1100, 1200, 1380],
+                    data: [580, 690],
                 }],
                 chartOptions: {
                     colors: ['#5b3cc4', '#5b3cc4'],
@@ -51,7 +51,7 @@ export default {
                         enabled: false,
                     },
                     xaxis: {
-                        categories: ['South Korea', 'Canada', 'United Kingdom', 'France', 'USA'],
+                        categories: ['O', 'X'],
                     },
                 },
             },

@@ -83,7 +83,7 @@
 								<div class="slider-caption slider-caption-center">
 									<h2 data-animate="fadeInUp">Welcome to CASE</h2>
 									<p class="d-none d-sm-block" data-animate="fadeInUp" data-delay="200">나만의 설문조사를 만들어보세요. <br> 타인의 설문조사를 응할 시 포인트를 GET할 수 있습니다.</p>
-									<button type="button" data-animate="fadeInUp" class="btn btn-outline-light mt-2" onclick="location.href = 'http:\/\/surveycase.com/survey'">함께 하시겠습니까?</button>
+									<button type="button" data-animate="fadeInUp" class="btn btn-outline-light mt-2" onclick="location.href = '/survey'">함께 하시겠습니까?</button>
 								</div>
 							</div>
 						</div>

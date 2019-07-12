@@ -92,8 +92,7 @@ export default {
         CheckIsActive() {
             if (this.to) {
                 if (
-                    this.$route.path.slice(1).includes(this.to.slice(1))
-          && this.to.slice(1)
+                    this.$route.path === this.to.slice(1)
                 ) {
                     this.activeLink = true;
                 } else this.activeLink = false;

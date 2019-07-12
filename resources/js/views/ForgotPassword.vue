@@ -10,16 +10,15 @@
             <div class="vx-col sm:w-full md:w-full lg:w-1/2 mx-auto self-center bg-white text-left">
               <div class="p-8">
                 <div class="vx-card__title mb-8 text-left">
-                  <h4 class="mb-4">Recover your password</h4>
-                  <p>Please enter your email address and we'll send you instructions on how to reset your password.</p>
+                  <h4 class="mb-4">비밀번호</h4>
+                  <p>회원님이 등록한 이메일로 비밀번호 초기화 절차를 발송합니다.</p>
                 </div>
 
                 <vs-input
                       v-validate="'required|alpha_dash'"
                       data-vv-validate-on="blur"
-                      label-placeholder="Account"
+                      label-placeholder="아이디"
                       name="account"
-                      placeholder="account"
                       v-model="account"
                       class="w-full" />
                   <span class="text-danger text-sm">{{ errors.first('account') }}</span>
@@ -29,15 +28,14 @@
                       data-vv-validate-on="blur"
                       name="email"
                       type="email"
-                      label-placeholder="Email"
-                      placeholder="Email"
+                      label-placeholder="이메일"
                       v-model="email"
                       class="w-full mt-8 text-left" />
                   <span class="text-danger text-sm">{{ errors.first('email') }}</span>
 
                 <div class="flex flex-wrap justify-between flex-col-reverse sm:flex-row mt-8">
-                  <vs-button type="border" to="/login" class="px-4 w-full md:w-auto">Back To Login</vs-button>
-                  <vs-button class="float-right px-4 w-full md:w-auto mt-3 mb-8 md:mt-0 md:mb-0" :disabled="!validateForm">Recover Password</vs-button>
+                  <vs-button type="flat" to="/login" class="px-4 w-full md:w-auto">로그인 화면으로 돌아가기</vs-button>
+                  <vs-button class="float-right px-4 w-full md:w-auto mt-3 mb-8 md:mt-0 md:mb-0" :disabled="!validateForm">비밀번호 복구</vs-button>
                 </div>
               </div>
             </div>

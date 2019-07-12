@@ -9,16 +9,16 @@
           <div class="vx-row no-gutter justify-center items-center">
             <div class="vx-col hidden lg:block lg:w-1/2">
               <img
-                src="@/assets/images/pages/login.png"
+                src="@/assets/case_logo.png"
                 alt="login"
-                class="mx-auto"
+                class="mx-auto lg:w-3/4 mb-2"
               />
             </div>
             <div class="vx-col sm:w-full md:w-full lg:w-1/2 bg-white text-left">
               <div class="p-8">
                 <div class="vx-card__title mb-8 text-left">
-                  <h4 class="mb-4">Login</h4>
-                  <p>Welcome back, please login to your account.</p>
+                  <h4 class="mb-4">로그인</h4>
+                  <p>CASE의 다양한 서비스를 이용하실 수 있습니다.</p>
                 </div>
                 <!-- icon="icon icon-user"
                     icon-pack="feather" -->
@@ -26,7 +26,7 @@
                   v-validate="'required'"
                   data-vv-validate-on="blur"
                   name="account"
-                  label-placeholder="Account"
+                  label-placeholder="아이디"
                   v-model="account"
                   class="w-full no-icon-border text-left"
                 />
@@ -39,7 +39,7 @@
                   v-validate="'required'"
                   type="password"
                   name="password"
-                  label-placeholder="Password"
+                  label-placeholder="비밀번호"
                   v-model="password"
                   class="w-full mt-6 no-icon-border text-left"
                 />
@@ -49,10 +49,10 @@
 
                 <div class="flex flex-wrap justify-between my-5">
                   <vs-checkbox v-model="checkbox_remember_me" class="mb-3"
-                    >Remember Me</vs-checkbox
+                    >자동 로그인</vs-checkbox
                   >
                   <router-link to="/forgetpassword"
-                    >Forgot Password?</router-link
+                    >비밀번호를 잊으셨나요?</router-link
                   >
                 </div>
 
@@ -60,17 +60,17 @@
                   class="flex flex-wrap justify-between flex-col-reverse sm:flex-row"
                 >
                   <vs-button
-                    type="border"
+                    type="flat"
                     to="/register"
                     class="float-left"
                     @click="registerUser"
-                    >Register</vs-button
+                    >계정이 없으신가요?</vs-button
                   >
                   <vs-button
                     class="float-right"
                     :disabled="!validateForm"
                     @click="login"
-                    >Login</vs-button
+                    >로그인</vs-button
                   >
                 </div>
               </div>

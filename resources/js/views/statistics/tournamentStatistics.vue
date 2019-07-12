@@ -19,10 +19,10 @@ export default {
         return {
             themeColors: ['#CC0000', '#CC0000'],
             pieChart: {
-                series: [10, 5],
+                series: [10, 5, 12, 6],
                 chartOptions: {
-                    labels: ['정답', '오답'],
-                    colors: ['#5b3cc4', '#FF3300'],
+                    labels: ['바나나', '사과', '포도', '딸기'],
+                    colors: ['#5b3cc4', '#FF3300', '#003300', '#FF33FF'],
                     responsive: [{
                         breakpoint: 480,
                         options: {
@@ -38,10 +38,10 @@ export default {
             },
             barChart: {
                 series: [{
-                    data: [580, 690, 1100, 1200, 1380],
+                    data: [10, 5, 12, 6],
                 }],
                 chartOptions: {
-                    colors: ['#5b3cc4', '#5b3cc4'],
+                    colors: ['#5b3cc4', '#FF3300', '#003300', '#FF33FF'],
                     plotOptions: {
                         bar: {
                             horizontal: true,
@@ -51,7 +51,7 @@ export default {
                         enabled: false,
                     },
                     xaxis: {
-                        categories: ['South Korea', 'Canada', 'United Kingdom', 'France', 'USA'],
+                        categories: ['바나나', '사과', '포도', '딸기'],
                     },
                 },
             },

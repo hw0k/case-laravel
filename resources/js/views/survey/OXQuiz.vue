@@ -1,10 +1,10 @@
 <template>
-  <div
+  <vs-col
     id="suvray-create-selection"
-    class="border border-solid border-gray-400 rounded relative overflow-hidden">
+    class="relative overflow-hidden">
     <case-form-wizard title="OX형 설문조사 생성" subtitle="">
       <tab-content
-        title="설문조사 기본 설정"
+        title="퀴즈 기본 설정"
         :before-change="validate('step1')"
       >
         <form @submit="e => e.preventDefault()" data-vv-scope="step1">
@@ -12,45 +12,81 @@
             <div class="vx-col sm:w-1/2 w-full mb-2">
               <vs-input
                 class="w-full"
-                label="설문조사 제목"
+                label="퀴즈 제목"
                 name="title"
                 v-model="title"
                 v-validate="'required'"
               />
+              <ul class="demo-alignment">
+                <li>
+                  <vs-radio v-model="answer" vs-value="O">O</vs-radio>
+                </li>
+                <li>
+                 <vs-radio v-model="answer" vs-value="X">X</vs-radio>
+                </li>
+              </ul>
+
+              <vs-button @click="AddImage" class="mt-6">이미지 추가</vs-button>
+              <div class=" w-full mb-2 vx-col" v-if="isAdd">
+                <file-upload
+                  v-if="isSet"
+                  extensions="gif,jpg,jpeg,png,webp"
+                  v-model="images"
+                  @input-file="onAddFile"
+                  @input-filter="onFilterFile"
+                >
+                  <img :src="images.length > 0 ? images[0].url : require('@/assets/images/default.jpg')" class="sm:w-2/3 w-full mb-2 mt-6"/>
+                </file-upload>
+                <img
+                  v-else
+                  :src="images.length > 0 ? images[0].url : require('@/assets/images/default.jpg')"
+                  class="sm:w-2/3 w-full mb-2 mt-6"
+                />
+              </div>
             </div>
           </div>
         </form>
       </tab-content>
-      <tab-content title="설문조사 최종 확인"> </tab-content>
+      <tab-content title="퀴즈 최종 확인"> </tab-content>
     </case-form-wizard>
-  </div>
+  </vs-col>
 </template>
 
 <script>
+import FileUpload from 'vue-upload-component';
 import CaseFormWizard from '@/components/form/CaseFormWizard.vue';
-import SelectionItem from './selectionItem.vue';
 
 export default {
     data() {
         return {
             title: '',
-            tourCount: [4, 8, 16, 32, 64],
-            selectCount: 4,
-            tags: ['computer', 'test', 'test2'],
-            tagInfo: '',
             qu_idx: 0,
+            answer: '',
+            explain: '',
+            images: [],
+            isAdd: false,
+            isSet: true,
+            media: '',
         };
     },
     methods: {
         onComplate() {},
-        removeTag(idx) {
-            this.tags.splice(idx, 1);
+        onAddFile(newFile) {
+            this.media = newFile.file;
         },
-        handleTagInput(e) {
-            if (e.keyCode === 13 && this.tagInfo.length > 0) {
-                this.tags.push(this.tagInfo);
-                this.tagInfo = '';
-                e.preventDefault();
+        onFilterFile(newFile, oldFile, prevent) {
+            if (newFile && !oldFile) {
+                if (!/\.(gif|jpg|jpeg|png|webp)$/i.test(newFile.name)) {
+                    this.alert('이미지를 올려 주세요');
+                    return prevent();
+                }
+            }
+            if (newFile && (!oldFile || newFile.file !== oldFile.file)) {
+                newFile.url = '';
+                const URL = window.URL || window.webkitURL;
+                if (URL && URL.createObjectURL) {
+                    newFile.url = URL.createObjectURL(newFile.file);
+                }
             }
         },
         validate(step) {
@@ -60,10 +96,16 @@ export default {
                 this.$validator.validateAll(step).then((result) => {
                     if (result) {
                         if (step === 'step1') {
-                            this.$http.post('/case/addQuiz', {
-                                question: this.title,
-                                table: 'example',
-                                type: 'tournament',
+                            const formData = new FormData();
+                            formData.append('media', this.media);
+                            formData.append('question', this.title);
+                            formData.append('answer', this.answer);
+                            formData.append('table', 'example');
+                            formData.append('type', 'ox');
+                            this.$http.post('/case/addQuiz', formData, {
+                                headers: {
+                                    'Content-Type': 'multipart/form-data',
+                                },
                             })
                                 .then(({ data }) => {
                                     this.qu_idx = data.idx;
@@ -73,8 +115,11 @@ export default {
                                 .catch((e) => {
                                     console.error(e);
                                     this.$vs.loading.close();
-                                    reject(new Error('설문조사 추가 실패'));
+                                    reject(new Error('퀴즈 추가 실패'));
                                 });
+
+                            this.$vs.loading.close();
+                            resolve(true);
                         } else {
                             this.$vs.loading.close();
                         }
@@ -85,14 +130,19 @@ export default {
                 });
             });
         },
+        AddImage() {
+            this.isAdd = true;
+        },
     },
     components: {
         CaseFormWizard,
-        SelectionItem,
+        FileUpload,
     },
 };
 </script>
 
-<style>
-
+<style scopped>
+.align-left {
+  text-align: left;
+}
 </style>
