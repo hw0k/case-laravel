@@ -1,19 +1,24 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+
 import Main from './layouts/Main.vue';
-import Home from './views/Home.vue';
-import Test from './views/Test.vue';
-import Hello from './views/Hello.vue';
 import Profile from './views/Profile.vue';
+import CreditShop from './views/creditShop/CreditShop.vue';
 import SurveyList from './views/survey/list/SurveyList.vue';
 import MakeSurvey from './views/survey/MakeSurvey.vue';
+import SurveyView from './views/survey/view/SurveyView.vue';
 import tournament from './views/survey/tournament.vue';
 import selection from './views/survey/selection.vue';
 import ShortAnswer from './views/survey/ShortAnswer.vue';
 import LongAnswer from './views/survey/LongAnswer.vue';
 import OXQuiz from './views/survey/OXQuiz.vue';
 import selectionStatistics from './views/statistics/selectionStatistics.vue';
+import OXStatistics from './views/statistics/OXStatistics.vue';
+import shortAnswerStatistics from './views/statistics/shortAnswerStatistics.vue';
+import longAnswerStatistics from './views/statistics/longAnswerStatistics.vue';
+import tournamentStatistics from './views/statistics/tournamentStatistics.vue';
 import Fullpage from './layouts/Fullpage.vue';
+import Home from './views/Home.vue';
 import Login from './views/Login.vue';
 import Register from './views/Register.vue';
 import ResetPassword from './views/ResetPassword.vue';
@@ -51,24 +56,25 @@ export default new Router({
             component: Main,
             children: [
                 {
-                    path: '/',
-                    component: Home,
-                },
-                {
-                    path: '/home',
-                    component: Home,
-                },
-                {
-                    path: '/test',
-                    component: Test,
-                },
-                {
-                    path: '/hello',
-                    component: Hello,
-                },
-                {
                     path: '/profile',
                     component: Profile,
+                },
+                {
+                    path: '/shop',
+                    component: CreditShop,
+                    meta: {
+                        pageTitle: '크레딧 상점',
+                        breadcrumb: [
+                            {
+                                title: '홈',
+                                url: '/',
+                            },
+                            {
+                                title: '크레딧 상점 목록',
+                                active: true,
+                            },
+                        ],
+                    },
                 },
                 {
                     path: '/survey',
@@ -76,8 +82,14 @@ export default new Router({
                     meta: {
                         pageTitle: '설문조사 목록',
                         breadcrumb: [
-                            { title: '홈', url: '/' },
-                            { title: '설문조사 목록', active: true },
+                            {
+                                title: '홈',
+                                url: '/',
+                            },
+                            {
+                                title: '설문조사 목록',
+                                active: true,
+                            },
                         ],
                     },
                 },
@@ -87,9 +99,39 @@ export default new Router({
                     meta: {
                         pageTitle: '일반 설문 추가',
                         breadcrumb: [
-                            { title: '홈', url: '/' },
-                            { title: '설문조사', url: '/survey' },
-                            { title: '설문조사 추가', active: true },
+                            {
+                                title: '홈',
+                                url: '/',
+                            },
+                            {
+                                title: '설문조사',
+                                url: '/survey',
+                            },
+                            {
+                                title: '설문조사 추가',
+                                active: true,
+                            },
+                        ],
+                    },
+                },
+                {
+                    path: '/survey/view',
+                    component: SurveyView,
+                    meta: {
+                        pageTitle: '설문조사 상세보기',
+                        breadcrumb: [
+                            {
+                                title: '홈',
+                                url: '/',
+                            },
+                            {
+                                title: '설문조사',
+                                url: '/survey',
+                            },
+                            {
+                                title: '설문조사 상세보기',
+                                active: true,
+                            },
                         ],
                     },
                 },
@@ -99,10 +141,22 @@ export default new Router({
                     meta: {
                         pageTitle: '토너먼트 설문조사 추가',
                         breadcrumb: [
-                            { title: '홈', url: '/' },
-                            { title: '설문조사', url: '/survey' },
-                            { title: '설문조사 추가', url: '/survey/create' },
-                            { title: '토너먼트 설문조사 추가', active: true },
+                            {
+                                title: '홈',
+                                url: '/',
+                            },
+                            {
+                                title: '설문조사',
+                                url: '/survey',
+                            },
+                            {
+                                title: '설문조사 추가',
+                                url: '/survey/create',
+                            },
+                            {
+                                title: '토너먼트 설문조사 추가',
+                                active: true,
+                            },
                         ],
                     },
                 },
@@ -112,10 +166,22 @@ export default new Router({
                     meta: {
                         pageTitle: '선택형 설문조사 추가',
                         breadcrumb: [
-                            { title: '홈', url: '/' },
-                            { title: '설문조사', url: '/survey' },
-                            { title: '설문조사 추가', url: '/survey/create' },
-                            { title: '선택형 설문조사 추가', active: true },
+                            {
+                                title: '홈',
+                                url: '/',
+                            },
+                            {
+                                title: '설문조사',
+                                url: '/survey',
+                            },
+                            {
+                                title: '설문조사 추가',
+                                url: '/survey/create',
+                            },
+                            {
+                                title: '선택형 설문조사 추가',
+                                active: true,
+                            },
                         ],
                     },
                 },
@@ -125,10 +191,22 @@ export default new Router({
                     meta: {
                         pageTitle: '단답형 설문조사 추가',
                         breadcrumb: [
-                            { title: '홈', url: '/' },
-                            { title: '설문조사', url: '/survey' },
-                            { title: '설문조사 추가', url: '/survey/create' },
-                            { title: '단답형 설문조사 추가', active: true },
+                            {
+                                title: '홈',
+                                url: '/',
+                            },
+                            {
+                                title: '설문조사',
+                                url: '/survey',
+                            },
+                            {
+                                title: '설문조사 추가',
+                                url: '/survey/create',
+                            },
+                            {
+                                title: '단답형 설문조사 추가',
+                                active: true,
+                            },
                         ],
                     },
                 },
@@ -138,10 +216,22 @@ export default new Router({
                     meta: {
                         pageTitle: '장문형 설문조사 추가',
                         breadcrumb: [
-                            { title: '홈', url: '/' },
-                            { title: '설문조사', url: '/survey' },
-                            { title: '설문조사 추가', url: '/survey/create' },
-                            { title: '장문형 설문조사 추가', active: true },
+                            {
+                                title: '홈',
+                                url: '/',
+                            },
+                            {
+                                title: '설문조사',
+                                url: '/survey',
+                            },
+                            {
+                                title: '설문조사 추가',
+                                url: '/survey/create',
+                            },
+                            {
+                                title: '장문형 설문조사 추가',
+                                active: true,
+                            },
                         ],
                     },
                 },
@@ -151,10 +241,22 @@ export default new Router({
                     meta: {
                         pageTitle: 'OX 설문조사 추가',
                         breadcrumb: [
-                            { title: '홈', url: '/' },
-                            { title: '설문조사', url: '/survey' },
-                            { title: '설문조사 추가', url: '/survey/create' },
-                            { title: 'OX 설문조사 추가', active: true },
+                            {
+                                title: '홈',
+                                url: '/',
+                            },
+                            {
+                                title: '설문조사',
+                                url: '/survey',
+                            },
+                            {
+                                title: '설문조사 추가',
+                                url: '/survey/create',
+                            },
+                            {
+                                title: 'OX 설문조사 추가',
+                                active: true,
+                            },
                         ],
                     },
                 },
@@ -164,9 +266,102 @@ export default new Router({
                     meta: {
                         pageTitle: '선택형 설문조사 통계',
                         breadcrumb: [
-                            { title: '홈', url: '/' },
-                            { title: '통계', url: '/statistics' },
-                            { title: '선택형 설문조사 통계', active: true },
+                            {
+                                title: '홈',
+                                url: '/',
+                            },
+                            {
+                                title: '통계',
+                                url: '/statistics',
+                            },
+                            {
+                                title: '선택형 설문조사 통계',
+                                active: true,
+                            },
+                        ],
+                    },
+                },
+                {
+                    path: '/survey/statistics/OXStatistics',
+                    component: OXStatistics,
+                    meta: {
+                        pageTitle: 'OX 설문조사 통계',
+                        breadcrumb: [
+                            {
+                                title: '홈',
+                                url: '/',
+                            },
+                            {
+                                title: '통계',
+                                url: '/statistics',
+                            },
+                            {
+                                title: 'OX 설문조사 통계',
+                                active: true,
+                            },
+                        ],
+                    },
+                },
+                {
+                    path: '/survey/statistics/shortAnswerStatistics',
+                    component: shortAnswerStatistics,
+                    meta: {
+                        pageTitle: '단답형 설문조사 통계',
+                        breadcrumb: [
+                            {
+                                title: '홈',
+                                url: '/',
+                            },
+                            {
+                                title: '통계',
+                                url: '/statistics',
+                            },
+                            {
+                                title: '단답형 설문조사 통계',
+                                active: true,
+                            },
+                        ],
+                    },
+                },
+                {
+                    path: '/survey/statistics/longAnswerStatistics',
+                    component: longAnswerStatistics,
+                    meta: {
+                        pageTitle: '장문형 설문조사 통계',
+                        breadcrumb: [
+                            {
+                                title: '홈',
+                                url: '/',
+                            },
+                            {
+                                title: '통계',
+                                url: '/statistics',
+                            },
+                            {
+                                title: '장문형 설문조사 통계',
+                                active: true,
+                            },
+                        ],
+                    },
+                },
+                {
+                    path: '/survey/statistics/tournamentStatistics',
+                    component: tournamentStatistics,
+                    meta: {
+                        pageTitle: '토너먼트 통계',
+                        breadcrumb: [
+                            {
+                                title: '홈',
+                                url: '/',
+                            },
+                            {
+                                title: '통계',
+                                url: '/statistics',
+                            },
+                            {
+                                title: '토너먼트 통계',
+                                active: true,
+                            },
                         ],
                     },
                 },
