@@ -1,7 +1,41 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
+import Main from './layouts/Main.vue';
+import Profile from './views/Profile.vue';
+import CreditShop from './views/creditShop/CreditShop.vue';
+import SurveyList from './views/survey/list/SurveyList.vue';
+import MakeSurvey from './views/survey/MakeSurvey.vue';
+import SurveyView from './views/survey/view/SurveyView.vue';
+import tournament from './views/survey/tournament.vue';
+import selection from './views/survey/selection.vue';
+import ShortAnswer from './views/survey/ShortAnswer.vue';
+import LongAnswer from './views/survey/LongAnswer.vue';
+import OXQuiz from './views/survey/OXQuiz.vue';
+import selectionStatistics from './views/statistics/selectionStatistics.vue';
+import OXStatistics from './views/statistics/OXStatistics.vue';
+import shortAnswerStatistics from './views/statistics/shortAnswerStatistics.vue';
+import longAnswerStatistics from './views/statistics/longAnswerStatistics.vue';
+import tournamentStatistics from './views/statistics/tournamentStatistics.vue';
+import Fullpage from './layouts/Fullpage.vue';
+import Home from './views/Home.vue';
+import Login from './views/Login.vue';
+import Register from './views/Register.vue';
+import ResetPassword from './views/ResetPassword.vue';
+import ForgotPassword from './views/ForgotPassword.vue';
+import Page404 from './views/404.vue';
+import Page500 from './views/500.vue';
+
 Vue.use(Router);
+/**
+ * dynamic import 삭제 쿼리
+ * import\('.*\/(.*).vue'\) 검색
+ * ctrl shift l
+ * 복사
+ * 위에 붙이고 replace
+ */
+// import\('(.*/(.*).vue)'\)
+// import $2 from '$1';
 
 /**
  * 라우터 추가하는 곳
@@ -19,15 +53,15 @@ export default new Router({
     routes: [
         {
             path: '',
-            component: () => import('./layouts/Main.vue'),
+            component: Main,
             children: [
                 {
                     path: '/profile',
-                    component: () => import('./views/Profile.vue'),
+                    component: Profile,
                 },
                 {
                     path: '/shop',
-                    component: () => import('./views/creditShop/CreditShop.vue'),
+                    component: CreditShop,
                     meta: {
                         pageTitle: '크레딧 상점',
                         breadcrumb: [
@@ -44,7 +78,7 @@ export default new Router({
                 },
                 {
                     path: '/survey',
-                    component: () => import('./views/survey/list/SurveyList.vue'),
+                    component: SurveyList,
                     meta: {
                         pageTitle: '설문조사 목록',
                         breadcrumb: [
@@ -61,7 +95,7 @@ export default new Router({
                 },
                 {
                     path: '/survey/create',
-                    component: () => import('./views/survey/MakeSurvey.vue'),
+                    component: MakeSurvey,
                     meta: {
                         pageTitle: '일반 설문 추가',
                         breadcrumb: [
@@ -82,7 +116,7 @@ export default new Router({
                 },
                 {
                     path: '/survey/view',
-                    component: () => import('./views/survey/view/SurveyView.vue'),
+                    component: SurveyView,
                     meta: {
                         pageTitle: '설문조사 상세보기',
                         breadcrumb: [
@@ -103,7 +137,7 @@ export default new Router({
                 },
                 {
                     path: '/survey/create/tournament',
-                    component: () => import('./views/survey/tournament.vue'),
+                    component: tournament,
                     meta: {
                         pageTitle: '토너먼트 설문조사 추가',
                         breadcrumb: [
@@ -128,7 +162,7 @@ export default new Router({
                 },
                 {
                     path: '/survey/create/selection',
-                    component: () => import('./views/survey/selection.vue'),
+                    component: selection,
                     meta: {
                         pageTitle: '선택형 설문조사 추가',
                         breadcrumb: [
@@ -153,7 +187,7 @@ export default new Router({
                 },
                 {
                     path: '/survey/create/short',
-                    component: () => import('./views/survey/ShortAnswer.vue'),
+                    component: ShortAnswer,
                     meta: {
                         pageTitle: '단답형 설문조사 추가',
                         breadcrumb: [
@@ -178,7 +212,7 @@ export default new Router({
                 },
                 {
                     path: '/survey/create/long',
-                    component: () => import('./views/survey/LongAnswer.vue'),
+                    component: LongAnswer,
                     meta: {
                         pageTitle: '장문형 설문조사 추가',
                         breadcrumb: [
@@ -203,7 +237,7 @@ export default new Router({
                 },
                 {
                     path: '/survey/create/OX',
-                    component: () => import('./views/survey/OXQuiz.vue'),
+                    component: OXQuiz,
                     meta: {
                         pageTitle: 'OX 설문조사 추가',
                         breadcrumb: [
@@ -228,7 +262,7 @@ export default new Router({
                 },
                 {
                     path: '/survey/statistics/selectionStatistics',
-                    component: () => import('./views/statistics/selectionStatistics.vue'),
+                    component: selectionStatistics,
                     meta: {
                         pageTitle: '선택형 설문조사 통계',
                         breadcrumb: [
@@ -249,7 +283,7 @@ export default new Router({
                 },
                 {
                     path: '/survey/statistics/OXStatistics',
-                    component: () => import('./views/statistics/OXStatistics.vue'),
+                    component: OXStatistics,
                     meta: {
                         pageTitle: 'OX 설문조사 통계',
                         breadcrumb: [
@@ -270,7 +304,7 @@ export default new Router({
                 },
                 {
                     path: '/survey/statistics/shortAnswerStatistics',
-                    component: () => import('./views/statistics/shortAnswerStatistics.vue'),
+                    component: shortAnswerStatistics,
                     meta: {
                         pageTitle: '단답형 설문조사 통계',
                         breadcrumb: [
@@ -291,7 +325,7 @@ export default new Router({
                 },
                 {
                     path: '/survey/statistics/longAnswerStatistics',
-                    component: () => import('./views/statistics/longAnswerStatistics.vue'),
+                    component: longAnswerStatistics,
                     meta: {
                         pageTitle: '장문형 설문조사 통계',
                         breadcrumb: [
@@ -312,7 +346,7 @@ export default new Router({
                 },
                 {
                     path: '/survey/statistics/tournamentStatistics',
-                    component: () => import('./views/statistics/tournamentStatistics.vue'),
+                    component: tournamentStatistics,
                     meta: {
                         pageTitle: '토너먼트 통계',
                         breadcrumb: [
@@ -335,39 +369,39 @@ export default new Router({
         },
         {
             path: '',
-            component: () => import('./layouts/Fullpage.vue'),
+            component: Fullpage,
             children: [
                 {
                     path: '/fullpage',
-                    component: () => import('./views/Home.vue'),
+                    component: Home,
                 },
                 {
                     path: '/login',
-                    component: () => import('./views/Login.vue'),
+                    component: Login,
                 },
                 {
                     path: '/register',
-                    component: () => import('./views/Register.vue'),
+                    component: Register,
                 },
                 {
                     path: '/resetpassword',
-                    component: () => import('./views/ResetPassword.vue'),
+                    component: ResetPassword,
                 },
                 {
                     path: '/forgetpassword',
-                    component: () => import('./views/ForgotPassword.vue'),
+                    component: ForgotPassword,
                 },
                 {
                     path: '/404',
-                    component: () => import('./views/404.vue'),
+                    component: Page404,
                 },
                 {
                     path: '/500',
-                    component: () => import('./views/500.vue'),
+                    component: Page500,
                 },
                 {
                     path: '*',
-                    component: () => import('./views/404.vue'),
+                    component: Page404,
                 },
             ],
         },
