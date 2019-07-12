@@ -2,15 +2,6 @@ import Vue from 'vue';
 import Router from 'vue-router';
 
 Vue.use(Router);
-/**
- * dynamic import 삭제 쿼리
- * import\('.*\/(.*).vue'\) 검색
- * ctrl shift l
- * 복사
- * 위에 붙이고 replace
- */
-// import\('(.*/(.*).vue)'\)
-// import $2 from '$1';
 
 /**
  * 라우터 추가하는 곳
